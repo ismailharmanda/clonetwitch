@@ -1,15 +1,24 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const PageOne = () => {
-  return <div>PageOne</div>;
+  return (
+    <div>
+      PageOne
+      <button>
+        <Link to="/pagetwo">Page Two</Link>
+      </button>
+    </div>
+  );
 };
 
 const PageTwo = () => {
   return (
     <div>
       PageTwo
-      <button>Click Me!</button>
+      <button>
+        <Link to="/">Page One</Link>
+      </button>
     </div>
   );
 };
