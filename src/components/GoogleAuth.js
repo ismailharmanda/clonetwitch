@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions";
 
 function GoogleAuth(props) {
   const [isSignedIn, setIsSignedIn] = useState(null);
@@ -20,8 +22,12 @@ function GoogleAuth(props) {
     });
   }, []);
 
-  const onAuthChange = () => {
-    setIsSignedIn(auth.current.isSignedIn.get());
+  const onAuthChange = (isSignedIn) => {
+    if (isSignedIn) {
+      props.signIn();
+    } else {
+      props.signOut();
+    }
   };
   const onSignInClick = () => {
     auth.current.signIn();
@@ -54,4 +60,4 @@ function GoogleAuth(props) {
   return <div>{renderAuthButton()}</div>;
 }
 
-export default GoogleAuth;
+export default connect(null, { signIn, signOut })(GoogleAuth);
