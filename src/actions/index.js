@@ -22,12 +22,15 @@ export const signOut = () => {
   };
 };
 
-export const createStream = (formValues) => async (dispatch, getState) => {
-  const { userId } = getState().auth;
-  const response = await streams.post("/streams", { ...formValues, userId });
+export const createStream =
+  (formValues, history) => async (dispatch, getState) => {
+    const { userId } = getState().auth;
+    const response = await streams.post("/streams", { ...formValues, userId });
 
-  dispatch({ type: CREATE_STREAM, payload: response.data });
-};
+    dispatch({ type: CREATE_STREAM, payload: response.data });
+    // Have to do something to do  some programatic navigation to
+    // get the user back to the root route
+  };
 
 export const fetchStreams = () => async (dispatch) => {
   const response = await streams.get("/streams");
