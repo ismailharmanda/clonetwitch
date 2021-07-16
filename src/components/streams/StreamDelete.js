@@ -16,7 +16,7 @@ const StreamDelete = () => {
         title="Delete Stream"
         content="Are you sure you want to delete this stream?"
         actions={actions}
-        onDismiss={() => History.push("/")}
+        onDismiss={History.push("/")}
       />
     </div>
   );
